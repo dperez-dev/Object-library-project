@@ -10,14 +10,12 @@
     <div>
         <form action="" id="form">
             <label for="">Title</label>
-            <input type="text" id="form-title">
+            <input type="text" id="form-title" required>
             <label for="">Author</label>
-            <input type="text" id="form-author">
-            <label for="">Description</label>
-            <input type="text" id="form-description">
+            <input type="text" id="form-author" required>
             <label for="">Number of pages</label>
-            <input type="number" id="form-numOfPages"> 
-            <button>submit</button>
+            <input type="number" id="form-numOfPages" required> 
+            <button>Add book</button>
         </form>
     </div>
     <div class="card-style">
@@ -32,6 +30,9 @@
         <button>Delete</button>
     </div>
 
+    <div id="card-container">
+
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
