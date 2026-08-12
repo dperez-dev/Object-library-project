@@ -23,12 +23,11 @@ function addToLibrary() {
 }
 
 function checkForArrayElement(array){
-    for(i=0; i < array.length; i++){
-        if(i === array.length){
-            console.log("Checked i===Array ")
-        }
-        else if(i < array.length){
-            return;
+    let i = 0;
+    while(i < array.length){
+        if(i < array.length){
+            i++;
+            console.log(`i found ${i} array element`)
         }
     }
 }
@@ -43,9 +42,9 @@ function createCard(array) {
                 <h3>Title</h3>
                 <p>${element.title}</p>
                 <h3>Author</h3>
-                <p><${element.author}</p>
+                <p>${element.author}</p>
                 <h3>Number of pages</h3>
-                <p><${element.numOfPages}</p>
+                <p>${element.numOfPages}</p>
                 <h3>Have read?</h3>
                 <input type="checkbox">
             </div>
