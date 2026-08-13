@@ -23,39 +23,41 @@ function addToLibrary() {
 }
 
 function checkForArrayElement(array){
-    let i = 0;
-    while(i < array.length){
-        if(i < array.length){
-            i++;
-            console.log(`i found ${i} array element`)
+    for(i=0; i < array.length; i++){
+        console.log(i)
+        if(i+1 === array.length){
+            console.log(`the number of books are ${i}.`)
+            console.log("Loop closed")
+            createCard(myLibrary, i);
         }
     }
 }
 
-function createCard(array) {
+function createCard(array, i) {
     const card = document.createElement("div");
     card.classList = "card-container";
 
-    array.forEach((element) => {
+    for(i=0; i < array.length; i++) {
         const html = `
             <div class="card-style">
                 <h3>Title</h3>
-                <p>${element.title}</p>
+                <p>${array[i].title}</p>
                 <h3>Author</h3>
-                <p>${element.author}</p>
+                <p>${array[i].author}</p>
                 <h3>Number of pages</h3>
-                <p>${element.numOfPages}</p>
+                <p>${array[i].numOfPages}</p>
                 <h3>Have read?</h3>
                 <input type="checkbox">
             </div>
         `;
         cardContainer.innerHTML += html;
-    });
+    };
 }
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     addToLibrary()
+    checkForArrayElement(myLibrary)
 })
 
 
