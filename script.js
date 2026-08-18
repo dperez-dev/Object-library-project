@@ -6,15 +6,17 @@ const form = document.getElementById("form");
 const cardContainer = document.getElementById("card-container");
 
 let myLibrary = [];
+let trackElementIndex = [];
+let arrayIndex = 0;
+let findIndex = 0;
 
-function createBook (title, author, numOfPages) {
+
+function createBook (title, author, numOfPages, id) {
     this.title = title;
     this.author = author; 
     this.numOfPages = numOfPages;
-    const generateId = crypto.randomUUID();
-    this.generateBook = function() {
-        return `Title: ${title}, Author: ${author}, Number of pages: ${numOfPages}, ID: ${generateId}`;
-    };
+    this.id = crypto.randomUUID();
+
 }
 
 function addToLibrary() {
@@ -22,36 +24,44 @@ function addToLibrary() {
     myLibrary.push(newEntry);
 }
 
-function checkForArrayElement(array){
-    for(i=0; i < array.length; i++){
-        console.log(i)
-        if(i+1 === array.length){
-            console.log(`the number of books are ${i}.`)
-            console.log("Loop closed")
-            createCard(myLibrary, i);
-        }
+function checkForArrayElement(){
+    if((myLibrary.length - 1) > (myLibrary.length -2)){
+        console.log(`the number of books are ${(myLibrary.length - 1) + 1}.`)
+        console.log("Loop closed")
+        createCard(myLibrary, myLibrary.length - 1);
     }
 }
 
 function createCard(array, i) {
     const card = document.createElement("div");
     card.classList = "card-container";
+    arrayIndex = i;
+    const html = `
+        <div class="card-style">
+            <h3>Title</h3>
+            <p>${array[i].title}</p>
+            <h3>Author</h3>
+            <p>${array[i].author}</p>
+            <h3>Number of pages</h3>
+            <p>${array[i].numOfPages}</p>
+            <h3>Have read?</h3>
+            <input type="checkbox">
+            <br>
+            <button>Delete</button>
+        </div>
+    `;
+    cardContainer.innerHTML += html;
+}
 
-    for(i=0; i < array.length; i++) {
-        const html = `
-            <div class="card-style">
-                <h3>Title</h3>
-                <p>${array[i].title}</p>
-                <h3>Author</h3>
-                <p>${array[i].author}</p>
-                <h3>Number of pages</h3>
-                <p>${array[i].numOfPages}</p>
-                <h3>Have read?</h3>
-                <input type="checkbox">
-            </div>
-        `;
-        cardContainer.innerHTML += html;
-    };
+function creatCard(array, i){
+
+}
+
+
+function deleteElement(){
+    
+    myLibrary.splice(arrayIndex, 1);
+    console.log("Array element DELETED!");
 }
 
 form.addEventListener("submit", (e) => {
