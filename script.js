@@ -4,10 +4,11 @@ const description = document.getElementById("form-description");
 const numOfPages = document.getElementById("form-numOfPages");
 const form = document.getElementById("form");
 const cardContainer = document.getElementById("card-container");
+const deleteBtn = document.getElementById("deleteBtn")
 
 let myLibrary = [];
 let trackElementIndex = [];
-let arrayIndex = 0;
+let arrayIndex = 1;
 let findIndex = 0;
 
 
@@ -16,8 +17,8 @@ function createBook (title, author, numOfPages, id) {
     this.author = author; 
     this.numOfPages = numOfPages;
     this.id = crypto.randomUUID();
-
 }
+
 
 function addToLibrary() {
     const newEntry = new createBook(title.value, author.value, numOfPages.value);
@@ -26,7 +27,7 @@ function addToLibrary() {
 
 function checkForArrayElement(){
     if((myLibrary.length - 1) > (myLibrary.length -2)){
-        console.log(`the number of books are ${(myLibrary.length - 1) + 1}.`)
+        console.log(`the number of books are ${(myLibrary.length)}.`)
         console.log("Loop closed")
         createCard(myLibrary, myLibrary.length - 1);
     }
@@ -37,7 +38,7 @@ function createCard(array, i) {
     card.classList = "card-container";
     arrayIndex = i;
     const html = `
-        <div class="card-style">
+        <div class="card-style" id="book-${i}">
             <h3>Title</h3>
             <p>${array[i].title}</p>
             <h3>Author</h3>
@@ -47,20 +48,18 @@ function createCard(array, i) {
             <h3>Have read?</h3>
             <input type="checkbox">
             <br>
-            <button>Delete</button>
+            <button id="deleteBtn">Delete</button>
         </div>
     `;
     cardContainer.innerHTML += html;
 }
 
-function creatCard(array, i){
-
-}
-
 
 function deleteElement(){
-    
     myLibrary.splice(arrayIndex, 1);
+
+    let removeElement = document.getElementById(`book-${arrayIndex}`);
+    removeElement.remove();
     console.log("Array element DELETED!");
 }
 
@@ -70,6 +69,12 @@ form.addEventListener("submit", (e) => {
     checkForArrayElement(myLibrary)
 })
 
+cardContainer.addEventListener("click", e =>{
+    e.target
+    if(e.target.id.includes("deleteBtn")){
+        deleteElement()
+    }
+})
 
 /**
  * things required for a boook
