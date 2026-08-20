@@ -7,9 +7,9 @@ const cardContainer = document.getElementById("card-container");
 const deleteBtn = document.getElementById("deleteBtn")
 
 let myLibrary = [];
-let trackElementIndex = [];
-let arrayIndex = 1;
-let findIndex = 0;
+// let trackElementIndex = [];
+let arrayIndex = 0;
+// let findIndex = 0;
 
 
 function createBook (title, author, numOfPages, id) {
@@ -59,8 +59,11 @@ function deleteElement(){
     myLibrary.splice(arrayIndex, 1);
 
     let removeElement = document.getElementById(`book-${arrayIndex}`);
+    console.log(removeElement);
+    arrayIndex = arrayIndex - 1;
+    console.log(`Array element ${`book${arrayIndex}`} DELETED!`);
     removeElement.remove();
-    console.log("Array element DELETED!");
+
 }
 
 form.addEventListener("submit", (e) => {
